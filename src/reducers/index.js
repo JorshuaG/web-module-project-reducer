@@ -5,18 +5,20 @@ import {
   CLEAR_DISPLAY,
   SET_MEMORY,
   CLEAR_MEMORY,
+  SOLVE_EQUATION,
 } from "./../actions";
 
 export const initialState = {
-  total: 0,
+  total: "",
   operation: "+",
   memory: 0,
+  num1: "",
 };
 
 const calculateResult = (num1, num2, operation) => {
   switch (operation) {
     case "+":
-      return num1 + num2;
+      return parseInt(num1) + parseInt(num2);
     case "*":
       return num1 * num2;
     case "-":
@@ -35,19 +37,22 @@ const reducer = (state, action) => {
     case APPLY_NUMBER:
       return {
         ...state,
-        total: calculateResult(state.total, action.payload, state.operation),
+        total: state.total + action.payload,
       };
 
     case CHANGE_OPERATION:
       return {
         ...state,
         operation: action.payload,
+        num1: state.total,
+        total: "",
       };
 
     case CLEAR_DISPLAY:
       return {
         ...state,
-        total: "0",
+        total: "",
+        num1: "",
       };
 
     case SET_MEMORY:
@@ -57,6 +62,11 @@ const reducer = (state, action) => {
       };
     case CLEAR_MEMORY:
       return { ...state, memory: "0" };
+    case SOLVE_EQUATION:
+      return {
+        ...state,
+        total: calculateResult(state.num1, state.total, state.operation),
+      };
 
     default:
       return state;

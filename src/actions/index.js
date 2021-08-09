@@ -5,6 +5,7 @@ export const CHANGE_OPERATION = "CHANGE_OPERATION";
 export const CLEAR_DISPLAY = "CLEAR_DISPLAY";
 export const SET_MEMORY = "SET_MEMORY";
 export const CLEAR_MEMORY = "CLEAR_MEMORY";
+export const SOLVE_EQUATION = "SOLVE_EQUATION";
 
 export const addOne = () => {
   return { type: ADD_ONE };
@@ -27,4 +28,8 @@ export const setMemory = () => {
 };
 export const clearMemory = () => {
   return { type: CLEAR_MEMORY };
+};
+
+export const solveEquation = () => {
+  return { type: SOLVE_EQUATION };
 };

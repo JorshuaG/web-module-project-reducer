@@ -8,6 +8,7 @@ import {
   clearDisplay,
   clearMemory,
   setMemory,
+  solveEquation,
 } from "./actions/index";
 
 import TotalDisplay from "./components/TotalDisplay";
@@ -17,13 +18,13 @@ function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const handleApplyNumber = (number) => {
-    dispatch(applyNumber(number));
+    dispatch(applyNumber(number.toString()));
   };
 
   const handleChangeOperation = (sym) => {
     dispatch(changeOperationAction(sym));
   };
-
+  console.log(state.num1);
   const handleClearDisplay = () => {
     dispatch(clearDisplay());
   };
@@ -33,6 +34,9 @@ function App() {
   };
   const handleClearMemory = () => {
     dispatch(clearMemory());
+  };
+  const handleSolve = () => {
+    dispatch(solveEquation());
   };
   return (
     <div className="App">
@@ -100,6 +104,7 @@ function App() {
 
             <div className="row ce_button">
               <CalcButton onClick={() => handleClearDisplay()} value={"CE"} />
+              <CalcButton onClick={() => handleSolve()} value={"="} />
             </div>
           </form>
         </div>
